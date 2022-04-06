@@ -15,7 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Table
+@Table(name = "pessoa")
 @Entity
 @Getter
 @Setter 
@@ -23,11 +23,11 @@ public class Pessoa {
 	
 	@Column(name = "idPessoa")
 	@Id
-	int id;
+	private int id;
 	
 	@Column(name = "nome")
-	String nome;
+	private String nome;
 	
 	@Column(name = "endereco")
-	String endereco;
+	private String endereco;
 }
