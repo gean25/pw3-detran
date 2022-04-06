@@ -5,15 +5,16 @@ import java.time.LocalDate;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import br.com.gean.pedro.pw3detran.enums.EstadoMultaEnum;
 
 @Table(name = "veiculo")
 @Entity
@@ -30,17 +31,18 @@ public class Multa {
 	@Column(name = "vencimento")
 	private LocalDate vencimento;
 	
+	@Enumerated(EnumType.STRING)
 	@Column(name = "estadoMulta")
-	private String estado;
+	private EstadoMultaEnum estado;
 	
 	@Column(name = "orgao")
 	private String orgao;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "veiculo")
 	private Veiculo veiculo;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "condutor")
 	private Pessoa condutor;
 	
