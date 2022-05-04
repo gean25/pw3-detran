@@ -1,8 +1,6 @@
 package br.com.gean.pedro.pw3detran.entity;
 
 
-
-
 import lombok.Getter;
 import lombok.Setter;
 
