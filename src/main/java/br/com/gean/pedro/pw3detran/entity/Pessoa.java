@@ -1,7 +1,7 @@
 package br.com.gean.pedro.pw3detran.entity;
 
 
-import java.time.LocalDate;
+
 
 import lombok.Getter;
 import lombok.Setter;
