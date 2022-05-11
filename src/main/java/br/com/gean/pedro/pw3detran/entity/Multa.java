@@ -16,7 +16,7 @@ import javax.persistence.Table;
 
 import br.com.gean.pedro.pw3detran.enums.EstadoMultaEnum;
 
-@Table(name = "veiculo")
+@Table(name = "multa")
 @Entity
 @Getter
 @Setter 
