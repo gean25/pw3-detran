@@ -2,8 +2,10 @@ package br.com.gean.pedro.pw3detran.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,16 +35,20 @@ public class PessoaController {
 	}
 	
 	@GetMapping("/{id}")
-	public Pessoa buscarPorId(@PathVariable Integer id) {
-		Pessoa tipo = new Pessoa();
-		tipo = repository.findById(id).get();
-		return tipo;
+	public ResponseEntity<Pessoa> buscarPorId(@PathVariable Integer id) {
+		
+		Optional<Pessoa> tipo = repository.findById(id);
+		if(tipo.isPresent()) {
+			ResponseEntity.noContent().build();
+		}
+		return ResponseEntity.ok(tipo.get());
 	}
 	
 	@PostMapping
-	public void inserir (@RequestBody Pessoa pessoa)
+	public ResponseEntity<Pessoa> inserir(@RequestBody Pessoa pessoa)
 	{
 		repository.save(pessoa);
+		return ResponseEntity.ok(pessoa);
 	}
 	
 	@PutMapping("/{id}")
@@ -56,9 +62,17 @@ public class PessoaController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public void atualizar(@PathVariable Integer id) 
+	public ResponseEntity<Integer> atualizar(@PathVariable Integer id) 
 	{
 		 repository.deleteById(id);
+		 return ResponseEntity.ok(id);
 	}
 	
+ /*@GetMapping("/{id}")
+	public Pessoa buscarPorId(@PathVariable Integer id) {
+	Pessoa tipo = new Pessoa();
+		tipo = repository.findById(id).get();
+		return tipo;
+	}
+	*/
 } 
