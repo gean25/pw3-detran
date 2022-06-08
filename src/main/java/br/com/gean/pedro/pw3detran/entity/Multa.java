@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.PastOrPresent;
 
 import br.com.gean.pedro.pw3detran.enums.EstadoMultaEnum;
 
@@ -25,22 +26,28 @@ public class Multa {
 	@Id
 	private int id;
 	
+	@PastOrPresent
 	@Column(name = "dataAplicacao")
 	private LocalDate data;
 	
+	@PastOrPresent
 	@Column(name = "vencimento")
 	private LocalDate vencimento;
+	
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name = "estadoMulta")
 	private EstadoMultaEnum estado;
 	
+	
 	@Column(name = "orgao")
 	private String orgao;
+	
 	
 	@ManyToOne
 	@JoinColumn(name = "veiculo")
 	private Veiculo veiculo;
+	
 	
 	@ManyToOne
 	@JoinColumn(name = "condutor")
